@@ -5,11 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>YUVANK SAINI</title>
     <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        var theme = localStorage.getItem("profile-theme");
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <header class="site-header">
-      <p class="eyebrow">Personal Profile</p>
-      
+      <div class="header-top">
+        <p class="eyebrow">Personal Profile</p>
+        <button type="button" class="theme-toggle" id="theme-toggle" aria-pressed="false">
+          Dark mode
+        </button>
+      </div>
+      <h1>YUVANK SAINI</h1>
       <p class="tagline">PLACEHOLDER Short professional tagline, for example: Web developer and designer.</p>
     </header>
 
@@ -17,10 +34,10 @@
       <section class="about" aria-labelledby="about-heading">
         <h2 id="about-heading">About</h2>
         <p>
-          PLACEHOLDER Write a short introduction about yourself. Include your background, what you enjoy working on, and what you are looking for next.
+         Hello World! I'm Yuvank Saini, I'm a B.tech 2nd year student.
         </p>
         <p>
-          PLACEHOLDER Add a second sentence with location, education, or current role if you want more detail.
+          I live in Mahesh Nagar, Jaipur.
         </p>
       </section>
 
@@ -31,24 +48,49 @@
           <li>VIDEO EDIT</li>
           <li> BEAT PRODUCTION</li>
           <li>C AND C++</li>
-
+         
         </ul>
       </section>
 
       <section class="projects" aria-labelledby="projects-heading">
         <h2 id="projects-heading">Projects</h2>
-        <ul>
-          <li>
+        <div class="project-tools">
+          <label class="project-search-label" for="project-search">Search projects</label>
+          <input
+            type="search"
+            id="project-search"
+            class="project-search"
+            placeholder="Search by name or technology"
+            autocomplete="off"
+          />
+          <label class="project-filter-label" for="project-tech-filter">Filter by technology</label>
+          <select id="project-tech-filter" class="project-tech-filter">
+            <option value="all">All technologies</option>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="c++">C++</option>
+            <option value="c">C</option>
+            <option value="video editing">Video Editing</option>
+            <option value="beat production">Beat Production</option>
+            <option value="content writing">Content Writing</option>
+          </select>
+        </div>
+        <p class="project-empty" id="project-empty" hidden>No projects match that name or technology.</p>
+        <ul id="project-list">
+          <li data-name="PLACEHOLDER Project One Title" data-tech="html, css, content writing">
             <a href="https://PLACEHOLDER-project-one.example.com">PLACEHOLDER Project One Title</a>
             <p>PLACEHOLDER Brief description of project one and what you built.</p>
+            <p class="project-tech">Technologies: HTML, CSS, Content Writing</p>
           </li>
-          <li>
+          <li data-name="PLACEHOLDER Project Two Title" data-tech="c, c++">
             <a href="https://PLACEHOLDER-project-two.example.com">PLACEHOLDER Project Two Title</a>
             <p>PLACEHOLDER Brief description of project two and what you built.</p>
+            <p class="project-tech">Technologies: C, C++</p>
           </li>
-          <li>
+          <li data-name="PLACEHOLDER Project Three Title" data-tech="video editing, beat production">
             <a href="https://PLACEHOLDER-project-three.example.com">PLACEHOLDER Project Three Title</a>
             <p>PLACEHOLDER Brief description of project three and what you built.</p>
+            <p class="project-tech">Technologies: Video Editing, Beat Production</p>
           </li>
         </ul>
       </section>
